@@ -1,5 +1,6 @@
 return {
   'itchyny/calendar.vim',
+  enabled = false,
   config = function()
     -- Enable Google Calendar integration
     vim.cmd('source ~/.cache/calendar.vim/credentials.vim')

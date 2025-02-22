@@ -39,6 +39,25 @@ vim.api.nvim_set_keymap('n', '<M-k>', ':resize +2<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<M-h>', ':vertical resize -2<CR>', { noremap = true })
 vim.api.nvim_set_keymap('n', '<M-l>', ':vertical resize +2<CR>', { noremap = true })
 
+--- wsl settings
+if vim.fn.has("wsl") then
+  vim.g.clipboard = {
+    name = "win_clipboard",
+    copy = {
+      ["+"] = "clip.exe",
+      ["*"] = "clip.exe",
+    },
+    paste = {
+      ["+"] = "powershell.exe Get-Clipboard",
+      ["*"] = "powershell.exe Get-Clipboard",
+    },
+    cache_enabled = 0,
+  }
+
+  vim.keymap.set({"n", "v"}, "y", '"+y', { noremap = true, silent = true })
+  vim.keymap.set({"n", "v"}, "p", '"+p', { noremap = true, silent = true })
+end
+
 -- 9. Spell Checking
 -- vim.api.nvim_set_keymap('n', '<leader>ss', ':setlocal spell!<CR>', { noremap = true })
 
